@@ -1,7 +1,8 @@
 import datetime
+from bson import ObjectId
 from django.contrib.auth.hashers import make_password, check_password
 
-from database_connection.helpers.collections import user_entity, test_scores
+from database_connection.helpers.collections import user_entity, test_scores, question_bank
 
 
 def upload_student_details(request):
@@ -28,6 +29,10 @@ def student_login(request):
 def upload_student_answers(request):
     try:
         entity_object = user_entity.find_one({'login_id': request.data['student_id']})
+        for question_object in request.data['question_level_marks_list']:
+            question_bank_object = question_bank.find_one({'_id': ObjectId(question_object['question_id'])})
+            question_object['total'] = int(question_bank_object['marks'])
+            question_object['topic_id'] = question_bank_object['topic_id']
         test_scores.insert({'student_id': entity_object['_id'],
                             'total_marks_obtained': request.data['total_marks_obtained'],
                             'question_level_marks_list': request.data['question_level_marks_list'],
