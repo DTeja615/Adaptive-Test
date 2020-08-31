@@ -4,3 +4,4 @@ djangorestframework==3.11.1
 dnspython==2.0.0
 geneticalgorithm==1.0.1
 numpy~=1.18.1
+pandas

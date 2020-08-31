@@ -2,7 +2,8 @@ from rest_framework import views, status
 from rest_framework.response import Response
 
 from faculty.helpers.faculty import upload_faculty_details, faculty_login, faculty_upload_question, \
-    update_student_scores, generate_mock_test
+    update_student_scores
+from faculty.MR import generate_mock_test
 
 
 class UploadFacultyDetails(views.APIView):
