@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 from geneticalgorithm import geneticalgorithm
 
 
@@ -24,7 +25,7 @@ def question_set_ga(P, min_question_topic=1, total_questions=5):
 
     varbound = np.array([[min_question_topic, 20]] * total_topics)
 
-    algorithm_param = {'max_num_iteration': 1000,
+    algorithm_param = {'max_num_iteration': 200,
                        'population_size': 100,
                        'mutation_probability': 0.1,
                        'elit_ratio': 0.01,
@@ -37,6 +38,6 @@ def question_set_ga(P, min_question_topic=1, total_questions=5):
                              variable_boundaries=varbound, algorithm_parameters=algorithm_param)
 
     model.run()
-
+    plt.close()
     return model.output_dict['variable']
 

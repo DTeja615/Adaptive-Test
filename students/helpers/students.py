@@ -1,4 +1,5 @@
 import datetime
+import pymongo
 from bson import ObjectId
 from django.contrib.auth.hashers import make_password, check_password
 
@@ -38,8 +39,28 @@ def upload_student_answers(request):
                             'question_level_marks_list': request.data['question_level_marks_list'],
                             'date_of_test': datetime.datetime.now()})
         return {'msg': 'test details uploaded successfully', 'status': True}
-    except :
+    except:
         return {'msg': 'could not upload test details', 'status': False}
+
+
+def previous_scores(request):
+    previous_test_scores_list = []
+    try:
+        user_entity_object = user_entity.find_one({'login_id': request.GET.get('student_id')})
+        previous_scores_object = test_scores.find({'student_id': user_entity_object['_id']},
+                                                  {'question_level_marks_list.topic_id': 0}).sort([
+            ('date_of_test', pymongo.DESCENDING)])
+        for previous_test_scores in previous_scores_object:
+            previous_test_scores['student_id'] = str(previous_test_scores['student_id'])
+            previous_test_scores['_id'] = str(previous_test_scores['_id'])
+            previous_test_scores['date_of_test'] = str(previous_test_scores['date_of_test'].day) + '/' + \
+                                                   str(previous_test_scores['date_of_test'].month) + '/' + \
+                                                   str(previous_test_scores['date_of_test'].year)
+            previous_test_scores_list.append(previous_test_scores)
+
+        return {'msg': 'previous test scores', 'status': True, 'list': previous_test_scores_list}
+    except:
+        return {'msg': 'unable to get test scores', 'status': False}
 
 
 def create_sha256_password(password):

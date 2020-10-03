@@ -2,7 +2,7 @@ from rest_framework import views, status
 from rest_framework.response import Response
 
 from faculty.helpers.faculty import upload_faculty_details, faculty_login, faculty_upload_question, \
-    update_student_scores
+    update_student_scores, fetch_mock_test
 from faculty.MR import generate_mock_test
 
 
@@ -38,5 +38,12 @@ class GenerateMockTest(views.APIView):
 
     def get(self, request):
         generate_response = generate_mock_test(request)
+        return Response(data=generate_response, status=status.HTTP_200_OK)
+
+
+class FetchMockTest(views.APIView):
+
+    def get(self, request):
+        generate_response = fetch_mock_test(request)
         return Response(data=generate_response, status=status.HTTP_200_OK)
 
