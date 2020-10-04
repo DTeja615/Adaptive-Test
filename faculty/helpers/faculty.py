@@ -1,10 +1,7 @@
-import pandas as pd
-import numpy as np
-import pymongo
+from bson import ObjectId
 from django.contrib.auth.hashers import make_password, check_password
 
-from faculty.GA import question_set_ga
-from database_connection.helpers.collections import user_entity, question_bank, test_scores, topics
+from database_connection.helpers.collections import user_entity, question_bank, test_scores
 
 
 def upload_faculty_details(request):
@@ -64,10 +61,13 @@ def fetch_mock_test(request):
         previous_answers_object = test_scores.find({'student_id': user_entity_object['_id']},
                                                   {'question_level_marks_list.topic_id': 0,
                                                    'date_of_test': 0}).sort([
-            ('date_of_test', pymongo.DESCENDING)]).limit(1)
+            ('date_of_test', -1)]).limit(1)
         for previous_answers in previous_answers_object:
             previous_answers['student_id'] = str(previous_answers['student_id'])
             previous_answers['_id'] = str(previous_answers['_id'])
+            for questions in previous_answers['question_level_marks_list']:
+                question_object = question_bank.find_one({'_id': ObjectId(questions['question_id'])})
+                questions['question'] = question_object['question_description']
             previous_answers_list.append(previous_answers)
 
         return {'msg': 'previous test answers', 'status': True, 'list': previous_answers_list}
