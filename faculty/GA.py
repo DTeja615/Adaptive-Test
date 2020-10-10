@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from geneticalgorithm import geneticalgorithm
 
 
@@ -10,16 +9,17 @@ from geneticalgorithm import geneticalgorithm
 # min_question_topic - the minimum number of questions per topic for mock test
 # total_questions - total number of question for the mock test
 
-def question_set_ga(P, min_question_topic=1, total_questions=5):
+def question_set_ga(P, min_question_topic=1, total_questions=20):
     total_topics = len(P)
 
     def f(X):
         pen = 0
         p_ratio = np.array([i / sum(P) for i in P])
         x_ratio = np.array([i / sum(X) for i in X])
+        pen = pen + 5 * abs(sum(X) - total_questions)
 
         if np.sum(X) > total_questions:
-            pen = 500 + 1000 * (sum(X) - total_questions)
+            pen = pen + 500 + 1000 * (sum(X) - total_questions)
 
         return np.sum(abs(p_ratio - x_ratio)) + pen
 
@@ -36,8 +36,6 @@ def question_set_ga(P, min_question_topic=1, total_questions=5):
 
     model = geneticalgorithm(function=f, dimension=total_topics, variable_type='int',
                              variable_boundaries=varbound, algorithm_parameters=algorithm_param)
-
     model.run()
-    plt.close()
     return model.output_dict['variable']
 
