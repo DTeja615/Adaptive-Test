@@ -56,6 +56,11 @@ def previous_scores(request):
             previous_test_scores['date_of_test'] = str(previous_test_scores['date_of_test'].day) + '/' + \
                                                    str(previous_test_scores['date_of_test'].month) + '/' + \
                                                    str(previous_test_scores['date_of_test'].year)
+            for answers in previous_test_scores['question_level_marks_list']:
+                question_bank_object = question_bank.find_one({'_id': ObjectId(answers['question_id'])})
+                answers['solution'] = question_bank_object['solution']
+                answers['keywords'] = "Keywords to include "+str(question_bank_object['keywords'])
+                answers['question'] = question_bank_object['question_description']
             previous_test_scores_list.append(previous_test_scores)
 
         return {'msg': 'previous test scores', 'status': True, 'list': previous_test_scores_list}

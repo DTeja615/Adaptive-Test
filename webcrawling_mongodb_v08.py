@@ -12,7 +12,6 @@ import re
 import numpy as np
 import RAKE
 
-
 def get(url):
     headers = {}
     resp = requests.get(url, headers=headers)
