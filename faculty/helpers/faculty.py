@@ -36,18 +36,22 @@ def faculty_upload_question(request):
 def update_student_scores(request):
     try:
         entity_object = user_entity.find_one({'login_id': request.data['student_id']})
-        test_score_object = test_scores.find_one({'student_id': entity_object['_id']})
-        for questions in test_score_object['question_level_marks_list']:
+        test_score_object = test_scores.find({'student_id': entity_object['_id']}).sort([('date_of_test', -1)]).limit(1)
+        test_data_dict = dict()
+        for test_object in test_score_object:
+            test_data_dict = test_object
+        for questions in test_data_dict['question_level_marks_list']:
             for scores in request.data['question_level_marks_list']:
                 if questions['question_id'] == scores['question_id']:
                     questions['score'] = scores['score']
 
-        test_scores.update_one({'student_id': entity_object['_id']}, {'$set':
+        test_scores.update_one({'student_id': entity_object['_id'], 'date_of_test': test_data_dict['date_of_test']},
+                                                                          {'$set':
                                                                           {'total_marks_obtained.marks_obtained':
                                                                                request.data['total_marks_obtained'][
                                                                                    'marks_obtained'],
                                                                            'question_level_marks_list':
-                                                                               test_score_object[
+                                                                               test_data_dict[
                                                                                    'question_level_marks_list']}})
         return {'msg': 'test scores updated successfully', 'status': True}
     except:
