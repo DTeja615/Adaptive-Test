@@ -1,0 +1,14 @@
+django==2.2.6
+pymongo==3.11.0
+djangorestframework==3.11.1
+dnspython==2.0.0
+geneticalgorithm==1.0.1
+numpy==1.18.1
+pandas
+nltk==3.4.5
+scikit-learn==0.22.1
+spacy==2.3.2
+python-rake==1.4.5
+requests==2.24.0
+bs4==0.0.1
+beautifulsoup4==4.6.0
