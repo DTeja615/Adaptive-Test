@@ -3,7 +3,7 @@ pymongo==3.11.0
 djangorestframework==3.11.1
 dnspython==2.0.0
 numpy==1.18.1
-pandas
+pandas==0.24.2
 nltk==3.4.5
 scikit-learn==0.22.1
 spacy==2.3.2
