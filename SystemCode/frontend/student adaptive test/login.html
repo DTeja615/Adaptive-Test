@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="login.css" />
+    <title>Sign in</title>
+  </head>
+  <body>
+    <div class="main">
+      <p class="sign" align="center">Sign in</p>
+      <form class="form1">
+        <p id="errorMsg">Username or Password is wrong</p>
+        <input
+          class="un"
+          id="username"
+          type="text"
+          align="center"
+          placeholder="Username"
+        />
+        <input
+          class="pass"
+          id="password"
+          type="password"
+          align="center"
+          placeholder="Password"
+        />
+        <a class="submit" id="submit" align="center">Sign in</a>
+      </form>
+    </div>
+
+    <script>
+      //Declare var
+      let username = document.getElementById("username");
+      let password = document.getElementById("password");
+      let submit = document.getElementById("submit");
+      let errorMsg = document.getElementById("errorMsg");
+      let now = new Date();
+      //Add event Listners
+      submit.addEventListener("click", checkUser);
+
+      function checkUser(e) {
+        e.preventDefault();
+        if (username.value.includes("KVTE53627") ||username.value.includes("KVST53890")  ) 
+        checkStudent();
+        else checkFaculty();
+      }
+
+      //Login function
+      function checkStudent() {
+        fetch(
+          `http://0.0.0.0:8000/api/v1/adaptive-test/student-login?login_id=${username.value}&password=${password.value}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status == false) {
+              errorMsg.style.display = "block";
+            } else {
+              document.cookie = "userID=" + username.value;
+              window.location.href = "./student/student.html";
+            }
+          });
+      }
+
+      //Login function
+      function checkFaculty(e) {
+        fetch(
+          `http://0.0.0.0:8000/api/v1/adaptive-test/faculty-login?login_id=${username.value}&password=${password.value}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status == false) {
+              errorMsg.style.display = "block";
+            } else {
+              document.cookie = "userID=" + username.value;
+              window.location.href = "./teacher/teacher.html";
+            }
+          });
+      }
+    </script>
+  </body>
+</html>

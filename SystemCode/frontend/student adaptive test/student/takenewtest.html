@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>takenewtest</title>
+    <style>
+      body {
+        background-image: url("./assets/img/portfolio/fullsize/8.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="msg">Please Wait. Your Question Paper Is Loading...</p>
+    <input type="button" id="submit" value="Submit" />
+    <script>
+      let cookie = document.cookie;
+      let userID = cookie.replace("userID=", "");
+      let marks = parseFloat(0);
+      let msg = document.getElementById("msg");
+console.log(userID)
+          fetch(
+            `http://0.0.0.0:8000/api/v1/adaptive-test/generate-mock-test?student_id=${userID}`
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.status !== false) {
+                let question_list = data.question_list;
+                let questionTemplate = "";
+
+                question_list.forEach((ques) => {
+                  questionTemplate += ques.question_description + "<br>";
+                  if (ques.type_of_question === "mcq") {
+                    ques.options.forEach((opt) => {
+                      questionTemplate += opt + "<br>";
+                    });
+                  }
+                  marks += parseFloat(ques.marks);
+                  questionTemplate += `<TextArea id=${ques._id} class="answer"></TextArea><br><br>`;
+                });
+                msg.innerHTML = questionTemplate;
+              } else {
+                msg.innerHTML = "some problem";
+              }
+            });
+
+      let btnSubmit = document.getElementById("submit");
+      btnSubmit.addEventListener("click", submitAnswers);
+
+      function submitAnswers(e) {
+        e.preventDefault();
+        let answersClass = document.getElementsByClassName("answer");
+
+        let question_level_marks_list = [];
+        for (let index = 0; index < answersClass.length; index++) {
+          const element = answersClass[index];
+          let ans = {
+            score: "NA",
+          };
+          ans.question_id = element.id;
+          ans.student_answer = element.value;
+
+          question_level_marks_list.push(ans);
+        }
+
+        let postData = {
+          student_id: userID,
+          total_marks_obtained: {
+            marks_obtained: "NA",
+            total: marks,
+          },
+          question_level_marks_list: question_level_marks_list,
+        };
+
+        console.log(postData);
+        postAnswers(postData);
+      }
+
+      function postAnswers(data) {
+        console.log("posting........");
+        fetch(
+          `http://0.0.0.0:8000/api/v1/adaptive-test/upload-student-answers`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        )
+          .then((data) => data.json())
+          .then((data) => {
+            msg.innerHTML = data.msg;
+            btnSubmit.style.display = "none";
+          });
+      }
+    </script>
+  </body>
+</html>

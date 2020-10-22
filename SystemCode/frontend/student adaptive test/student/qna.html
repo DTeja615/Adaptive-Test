@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QNA</title>
+  </head>
+  <body>
+    <style>
+      body {
+        background-image: url('./assets/img/portfolio/fullsize/7.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+      }
+    </style> 
+    <p id="msg">Please wait while the answer loads...</p>
+    <script>
+      let msg = document.getElementById("msg");
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const search = urlParams.get("search");
+      if (search !== "" && search !== null) getQN();
+      function getQN() {
+        let data = { user_request: search };
+        fetch(`http://0.0.0.0:8000/api/v1/adaptive-test/student-qna`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((data) => data.json())
+          .then((data) => {
+            msg.innerHTML = data.msg;
+          });
+      }
+    </script>
+  </body>
+</html>

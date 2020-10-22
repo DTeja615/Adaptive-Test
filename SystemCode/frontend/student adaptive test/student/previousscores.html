@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Previous Score</title>
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Previous Marks</h3>
+    <p id="msg"></p>
+    <p id="lastUpdated"></p>
+
+    <script>
+      let cookie = document.cookie;
+      let userID = cookie.replace("userID=", "");
+      let msg = document.getElementById("msg");
+      let lastUpdated = document.getElementById("lastUpdated");
+
+      fetch(
+        `http://0.0.0.0:8000/api/v1/adaptive-test/previous-test-scores?student_id=${userID}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status !== false) {
+            let list = data.list;
+            let questionTemplate = `<table>
+                                <tr>
+                                    <th>Question</th>
+                                    <th>Student Answer</th>
+                                    <th>Mark</th>
+                                    <th>Total Mark</th>
+                                    <th>Solution</th>
+                                    <th>Keywords</th>
+                                </tr>`;
+
+            list[0].question_level_marks_list.forEach((li) => {
+              questionTemplate +=
+                "<tr><td>" +
+                li.question +
+                "</td>" +
+                "<td>" +
+                li.student_answer +
+                "</td>"
+               +`<td>${li.score}</td>`
+               + `<td>${li.total}</td>`+
+                "<td>" +
+                li.solution +
+                "</td>" +
+                "<td>" +
+                li.keywords +
+                "</td></tr>";
+            });
+
+            msg.innerHTML = questionTemplate + "<table>";
+            console.log(data);
+            lastUpdated.innerHTML = "Date of Test "+data.list[0].date_of_test;
+          } else {
+            msg.innerHTML = "some problem";
+          }
+        });
+    </script>
+  </body>
+</html>

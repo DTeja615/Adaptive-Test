@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+      #btnUpdateMarks {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" id="studentId" placeholder="Please enter Student Id" />
+    <button id="btnSubmit" type="button">Submit</button><br /><br />
+
+    <p id="msg"></p>
+    <button id="btnUpdateMarks" type="button">Update Marks</button>
+    <script>
+      
+      let studentId = document.getElementById("studentId").value;
+      let btnSubmit = document.getElementById("btnSubmit");
+      let msg = document.getElementById("msg");
+      let btnUpdateMarks = document.getElementById("btnUpdateMarks");
+
+      btnUpdateMarks.addEventListener("click", updateStudentScore);
+      btnSubmit.addEventListener("click", getStudentMark);
+
+      function getStudentMark(e) {
+        studentId = document.getElementById("studentId").value;
+        e.preventDefault();
+        console.log(studentId);
+        if(studentId)
+        fetch(
+          `http://0.0.0.0:8000/api/v1/adaptive-test/fetch-mock-test?student_id=${studentId}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status !== false) {
+              let list = data.list;
+              let questionTemplate = `  <table>
+      <tr>
+        <th>Question</th>
+        <th>Student Answer</th>
+        <th>Mark</th>
+        <th>Total Mark</th>
+       </tr>`;
+
+              list[0].question_level_marks_list.forEach((li) => {
+                questionTemplate +=
+                  "<tr><td>" +
+                  li.question +
+                  "</td>" +
+                  "<td>" +
+                  li.student_answer +
+                  "</td>";
+                questionTemplate += `<td><input type="number" id=${li.question_id} min="0" max=${li.total} class="mark"/></td>`;
+                questionTemplate += "<td>" + li.total + "</td></tr>";
+              });
+              msg.innerHTML = questionTemplate + "<table>";
+              btnUpdateMarks.style.display = "block";
+            } else {
+              msg.innerHTML = "some problem";
+            }
+          });
+      }
+
+      function updateStudentScore(e) {
+        e.preventDefault();
+        let markClass = document.getElementsByClassName("mark");
+        let marks = 0;
+        let question_level_marks_list = [];
+        for (let index = 0; index < markClass.length; index++) {
+          const element = markClass[index];
+          marks += parseFloat(element.value);
+          question_level_marks_list.push({
+            score: element.value,
+            question_id: element.id,
+          });
+        }
+
+        let postData = {
+          student_id: studentId,
+          total_marks_obtained: {
+            marks_obtained: marks,
+          },
+          question_level_marks_list: question_level_marks_list,
+        };
+
+        console.log(postData);
+        postAnswers(postData);
+      }
+
+      function postAnswers(data) {
+        console.log("posting........");
+        console.log(JSON.stringify(data));
+        fetch(
+          `http://0.0.0.0:8000/api/v1/adaptive-test/update-student-scores`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        )
+          .then((data) => data.json())
+          .then((data) => {
+            msg.innerHTML = data.msg;
+            btnUpdateMarks.style.display = "none";
+          });
+      }
+    </script>
+  </body>
+</html>
