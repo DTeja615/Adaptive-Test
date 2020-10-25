@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb6c21af-7e9f-41f1-ac8d-5b64d2007892" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/SystemCode/backend/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SystemCode/backend/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserGuide/User Guide Adaptive Test System.docx" beforeDir="false" afterPath="$PROJECT_DIR$/UserGuide/User Guide Adaptive Test System.docx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
