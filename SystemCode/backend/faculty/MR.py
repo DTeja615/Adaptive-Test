@@ -101,6 +101,8 @@ def generate_mock_test(request):
         for question_id in question_set:
             questions_object = question_bank.find_one({'_id': ObjectId(question_id)}, {'solution': 0, 'keywords': 0})
             questions_object['_id'] = str(questions_object['_id'])
+            topic_object = topics.find_one({'_id': questions_object['topic_id']})
+            questions_object['topic_name'] = topic_object['topic_name']
             questions_object['topic_id'] = str(questions_object['topic_id'])
             question_list.append(questions_object)
         shuffle(question_list)

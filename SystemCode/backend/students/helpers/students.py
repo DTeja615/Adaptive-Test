@@ -3,6 +3,7 @@ import pymongo
 from bson import ObjectId
 from django.contrib.auth.hashers import make_password, check_password
 
+from .link_scaper import link_scraping
 from database_connection.helpers.collections import user_entity, test_scores, question_bank
 
 
@@ -61,6 +62,8 @@ def previous_scores(request):
                 answers['solution'] = question_bank_object['solution']
                 answers['keywords'] = "Keywords to include "+str(question_bank_object['keywords'])
                 answers['question'] = question_bank_object['question_description']
+                link_list = link_scraping(answers['question'])
+                answers['list_of_links'] = link_list
             previous_test_scores_list.append(previous_test_scores)
 
         return {'msg': 'previous test scores', 'status': True, 'list': previous_test_scores_list}
