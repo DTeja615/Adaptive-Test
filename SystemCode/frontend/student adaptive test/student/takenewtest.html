@@ -30,9 +30,12 @@ console.log(userID)
               if (data.status !== false) {
                 let question_list = data.question_list;
                 let questionTemplate = "";
-
+                let qNo =1;
                 question_list.forEach((ques) => {
-                  questionTemplate += ques.question_description + "<br>";
+                  questionTemplate += qNo+". "+ques.question_description + '&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp' + 
+                  "Difficulty level : " + ques.difficulty_level + '&nbsp &nbsp &nbsp &nbsp' + 
+                  "Topic : " + ques.topic_name + '&nbsp &nbsp &nbsp &nbsp' + 
+                  "Marks :" + ques.marks + "<br>";
                   if (ques.type_of_question === "mcq") {
                     ques.options.forEach((opt) => {
                       questionTemplate += opt + "<br>";
@@ -40,6 +43,7 @@ console.log(userID)
                   }
                   marks += parseFloat(ques.marks);
                   questionTemplate += `<TextArea id=${ques._id} class="answer"></TextArea><br><br>`;
+                  qNo++;
                 });
                 msg.innerHTML = questionTemplate;
               } else {

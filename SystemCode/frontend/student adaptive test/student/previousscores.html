@@ -24,6 +24,14 @@
     </style>
   </head>
   <body>
+    <style>
+      body {
+        background-image: url('./assets/img/portfolio/fullsize/8.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+      }
+    </style>
     <h3>Previous Marks</h3>
     <p id="msg"></p>
     <p id="lastUpdated"></p>
@@ -49,6 +57,7 @@
                                     <th>Total Mark</th>
                                     <th>Solution</th>
                                     <th>Keywords</th>
+                                    <th>Reference Links</th>
                                 </tr>`;
 
             list[0].question_level_marks_list.forEach((li) => {
@@ -58,20 +67,28 @@
                 "</td>" +
                 "<td>" +
                 li.student_answer +
-                "</td>"
-               +`<td>${li.score}</td>`
-               + `<td>${li.total}</td>`+
+                "</td>" +
+                `<td>${li.score}</td>` +
+                `<td>${li.total}</td>` +
                 "<td>" +
                 li.solution +
                 "</td>" +
                 "<td>" +
                 li.keywords +
-                "</td></tr>";
+                "</td>" +
+                "<td>";
+                let num =1;
+                  li.list_of_links.forEach((link)=>{
+                    questionTemplate +=  `<a href="${link}" target="_blank">Reference Link ${num}</a><br/>`;
+                    num++;
+                  })
+                 
+                  questionTemplate += "</td></tr>";
             });
 
             msg.innerHTML = questionTemplate + "<table>";
             console.log(data);
-            lastUpdated.innerHTML = "Date of Test "+data.list[0].date_of_test;
+            lastUpdated.innerHTML = "Date of Test " + data.list[0].date_of_test;
           } else {
             msg.innerHTML = "some problem";
           }
