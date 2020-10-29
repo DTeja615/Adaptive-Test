@@ -25,8 +25,8 @@ def question_set_ga(P, min_question_topic=1, total_questions=20):
 
     varbound = np.array([[min_question_topic, 20]] * total_topics)
 
-    algorithm_param = {'max_num_iteration': 200,
-                       'population_size': 100,
+    algorithm_param = {'max_num_iteration': 250,
+                       'population_size': 200,
                        'mutation_probability': 0.1,
                        'elit_ratio': 0.01,
                        'crossover_probability': 0.5,
