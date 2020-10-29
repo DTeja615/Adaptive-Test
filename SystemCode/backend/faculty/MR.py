@@ -91,7 +91,7 @@ def generate_mock_test(request):
                 easy_q = ruleset['easy'](topic, num_ques, prev_mocktestsDF, question_bankDF)
                 question_set.extend(easy_q)
             else:
-                medium_q = ruleset['medium'](topic, num_ques, prev_mocktestsDF, question_bankDF)
+                medium_q, easy_table, medium_table, hard_table = ruleset['medium'](topic, num_ques, prev_mocktestsDF, question_bankDF)
                 question_set.extend(medium_q)
 
         question_bankDF[question_bankDF['question_id'].isin(question_set)].groupby(['topic']).agg(
