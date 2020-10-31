@@ -2,34 +2,30 @@
 
 ### **Adaptive Test**
 
+![](SystemCode/backend/students.jpg)
+
 # **SECTION 2 : EXECUTIVE SUMMARY / PAPER ABSTRACT**
 
- “Education is the only way to win the world. It is to think deeply about something till its roots and understand the intention behind it”. 	
-         - Unknown
-Education is the social institution through which society provides its members with important knowledge, including basic facts, job skills, and cultural norms values. 
+ In today’s competitive fashion industry, designers are looking for newer and better ways for designing apparel and launching them into the market. 
 
-This year alone we have witnessed an investment of about $5.6 trillion on education and training globally by governments, educational institutes, families, etc. and it is expected to grow by 4.5% between the years 2021-2026. 
+Designing new garments as per the preferences of the designer can pose a big challenge as the designer may run of out of new ideas for ready to market garment designs.  
 
-Undeniably, education plays a crucial role in reducing poverty and inequality and laying a foundation for sustained economic growth. Governments are expected to develop and implement strategies that promote education and enrolment of students. High-enrolment in education can translate into more skilled labour, which can provide a positive impact on a country’s GDP.
+Due to rapid pace of change in fashion trends, automated generation of apparel design has become popular. 
 
-One of the most important benefits of an education at an individual level is that it improves lives and helps society to run smoothly. Therefore, assessments are a way to test the skills acquired.
-
-Assessment evaluates the student’s ability of learning. It is an analysis of the student’s understanding, a measurement of how much they learn. The primary goal of assessments is for self-improvement. 
-
-The level of modern assessment evaluation can be further enhanced by unlocking the potential of adaptive assessments.
+Using the generative adversarial network, we train the model with large garment dataset with which we expect to receive new garment designs. 
 
 # SECTION 3 : CREDITS / PROJECT CONTRIBUTION
 
 <!-- Tables -->
 | Official Full Name	 | Student ID	| Work summary            |
 | -----------------------| -------------| ------------------------|
-| NACHIKETH DORAISWAMY   | A0215523N    | Web scrapping, django application APIs, database design, implementation of rules, interactive QnA solver(CGS), Github repository
+| NACHIKETH DORAISWAMY   | A0215523N    | Data cleansing, django application APIs, Github repository, CNN classification, GAN model evaluation and comparison, video presentation, project report, user guide
 | LAKSHMI SUBRAMANIAN    | A0215255L    | Web scrapping, Data cleansing, Optimisation algorithm design and implementation, Ruleset implementation
-| YALAVARTI DHARMA TEJA  | A0215457A    | Front end UI development, Video Presentation, Acquiring data for Question Bank, Initial draft of MR rules to generate questions based on student performance
+| YALAVARTI DHARMA TEJA  | A0215457A    | Front end UI development, GAN implementation, Pattern Classification, Neckline Classification
 
 # SECTION 4 : PROJECT VIDEO DEMONSTRATION
 
-[video link](https://github.com/Doraiswamy/Adaptive-Test/tree/master/Video)
+[video link](https://github.com/Doraiswamy/GAN-fashion-set-generator/tree/master/Video)
 
 # SECTION 5 : USER GUIDE
 
