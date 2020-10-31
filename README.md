@@ -2,8 +2,6 @@
 
 ### **Adaptive Test**
 
-<img src="https://www.simplek12.com/wp-content/uploads/2018/01/shutterstock_735099235_sm.png" width="550">
-
 # **SECTION 2 : EXECUTIVE SUMMARY / PAPER ABSTRACT**
 
  “Education is the only way to win the world. It is to think deeply about something till its roots and understand the intention behind it”. 	
