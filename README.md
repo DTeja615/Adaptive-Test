@@ -35,7 +35,8 @@ The level of modern assessment evaluation can be further enhanced by unlocking t
 
 https://github.com/Doraiswamy/Adaptive-Test/tree/master/UserGuide
 
-Back-end 
+**Back-end** 
+
 •	Clone the repository https://github.com/Doraiswamy/Adaptive-Test.git into a separate directory.
 
 •	Choose the editor of your choice. For example, PyCharm, Spyder etc. Note that this is not a compulsory step, it is only if you want to view the code.
@@ -52,7 +53,9 @@ Back-end
 
 ** Note: It is assumed that python 3.0 or above is already installed in your system. If not please install the latest python version from the link given below:
 https://www.python.org/downloads/
-Front-end 
+
+**Front-end** 
+
 Open the browser of your choice. In this case, we are using Mozilla Firefox. Make sure that CORS addon is installed in your browser and is enabled.
 
 # SECTION 6 : PROJECT REPORT / PAPER
