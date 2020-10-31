@@ -21,7 +21,7 @@ Using the generative adversarial network, we train the model with large garment 
 | -----------------------| -------------| ------------------------|
 | NACHIKETH DORAISWAMY   | A0215523N    | Data cleansing, django application APIs, Github repository, CNN classification, GAN model evaluation and comparison, video presentation, project report, user guide
 | LAKSHMI SUBRAMANIAN    | A0215255L    | Web scrapping, Data cleansing, Optimisation algorithm design and implementation, Ruleset implementation
-| YALAVARTI DHARMA TEJA  | A0215457A    | Front end UI development, GAN implementation, Pattern Classification, Neckline Classification
+| YALAVARTI DHARMA TEJA  | A0215457A    | 	Front end UI development, Video Presentation, Acquiring data for Question Bank, Initial draft of MR rules to generate questions based on student performance, user guide, project report
 
 # SECTION 4 : PROJECT VIDEO DEMONSTRATION
 
