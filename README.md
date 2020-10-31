@@ -19,9 +19,9 @@ Using the generative adversarial network, we train the model with large garment 
 <!-- Tables -->
 | Official Full Name	 | Student ID	| Work summary            |
 | -----------------------| -------------| ------------------------|
-| NACHIKETH DORAISWAMY   | A0215523N    | Data cleansing, django application APIs, Github repository, CNN classification, GAN model evaluation and comparison, video presentation, project report, user guide
-| LAKSHMI SUBRAMANIAN    | A0215255L    | Web scrapping, Data cleansing, Optimisation algorithm design and implementation, Ruleset implementation
-| YALAVARTI DHARMA TEJA  | A0215457A    | 	Front end UI development, Video Presentation, Acquiring data for Question Bank, Initial draft of MR rules to generate questions based on student performance, user guide, project report
+| NACHIKETH DORAISWAMY   | A0215523N    | Data cleansing, Django application APIs, Github repository, Business rulesets, Intelligent QnA Solver, project report, user guide
+| LAKSHMI SUBRAMANIAN    | A0215255L    | Web scrapping, Data cleansing, Optimisation algorithm design and implementation, Ruleset implementation, project report, user guide
+| YALAVARTI DHARMA TEJA  | A0215457A    | Front end UI development, Video Presentation, Acquiring data for Question Bank, Initial draft of MR rules to generate questions based on student performance, user guide, project report
 
 # SECTION 4 : PROJECT VIDEO DEMONSTRATION
 
