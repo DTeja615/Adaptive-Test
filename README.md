@@ -2,16 +2,22 @@
 
 ### **Adaptive Test**
 
-<img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.techgenyz.com%2Fwp-content%2Fuploads%2F2020%2F04%2Fstudents-giving-exam-1024x576.jpg&imgrefurl=https%3A%2F%2Fwww.techgenyz.com%2F2020%2F04%2F15%2Fgmat-to-be-conducted-online-from-apr-20%2F&tbnid=E_CZbwuKIfeh4M&vet=12ahUKEwib6oPHtd7sAhWEPCsKHdUiASgQMygPegUIARDGAQ..i&docid=vMAR5NpO2OuugM&w=1024&h=576&itg=1&q=students%20giving%20exam%20computer&ved=2ahUKEwib6oPHtd7sAhWEPCsKHdUiASgQMygPegUIARDGAQ" width="400">
+<img src="https://www.simplek12.com/wp-content/uploads/2018/01/shutterstock_735099235_sm.png" width="550">
 
 # **SECTION 2 : EXECUTIVE SUMMARY / PAPER ABSTRACT**
 
  “Education is the only way to win the world. It is to think deeply about something till its roots and understand the intention behind it”. 	
          - Unknown
 Education is the social institution through which society provides its members with important knowledge, including basic facts, job skills, and cultural norms values. 
-This year alone we have witnessed an investment of about $5.6 trillion on education and training globally by governments, educational institutes, families, etc. and it is expected to grow by 4.5% between the years 2021-2026. Undeniably, education plays a crucial role in reducing poverty and inequality and laying a foundation for sustained economic growth. Governments are expected to develop and implement strategies that promote education and enrolment of students. High-enrolment in education can translate into more skilled labour, which can provide a positive impact on a country’s GDP.
+
+This year alone we have witnessed an investment of about $5.6 trillion on education and training globally by governments, educational institutes, families, etc. and it is expected to grow by 4.5% between the years 2021-2026. 
+
+Undeniably, education plays a crucial role in reducing poverty and inequality and laying a foundation for sustained economic growth. Governments are expected to develop and implement strategies that promote education and enrolment of students. High-enrolment in education can translate into more skilled labour, which can provide a positive impact on a country’s GDP.
+
 One of the most important benefits of an education at an individual level is that it improves lives and helps society to run smoothly. Therefore, assessments are a way to test the skills acquired.
+
 Assessment evaluates the student’s ability of learning. It is an analysis of the student’s understanding, a measurement of how much they learn. The primary goal of assessments is for self-improvement. 
+
 The level of modern assessment evaluation can be further enhanced by unlocking the potential of adaptive assessments.
 
 # SECTION 3 : CREDITS / PROJECT CONTRIBUTION
