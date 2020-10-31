@@ -4,6 +4,7 @@ Created on Wed Aug 19 17:22:58 2020
 
 @author: Lakshmi Subramanian
 """
+import os
 from bson import ObjectId
 import numpy as np
 import pandas as pd
@@ -77,25 +78,19 @@ def generate_mock_test(request):
 
         question_set = []
         for i in range(len(prev_mocktestsDF_ga.index)):
+            dl = pd.read_csv(os.getcwd()+r'/difficulty_level.csv')
             topic = prev_mocktestsDF_ga.index[i]
             num_ques = ga_output[i]
             dl_list = prev_mocktestsDF[prev_mocktestsDF['topic'] == topic].sort_values(
                 by=['difficulty_level']).marks_percent.to_list()
             dl_list01 = np.where(np.array((dl_list)) > 0.5, 1, 0).tolist()
-            # dl_score = dl_list01[0]+10*dl_list01[2]+100*dl_list01[1]
-            # print(dl_list, dl_list01,dl_score)
-            if dl_list01[0] == 1 & dl_list01[2] == 1:
-                hard_q = ruleset['hard'](topic, num_ques, prev_mocktestsDF, question_bankDF)
-                question_set.extend(hard_q)
-            elif dl_list01[1] == 0:
-                easy_q = ruleset['easy'](topic, num_ques, prev_mocktestsDF, question_bankDF)
-                question_set.extend(easy_q)
-            else:
-                medium_q, easy_table, medium_table, hard_table = ruleset['medium'](topic, num_ques, prev_mocktestsDF, question_bankDF)
-                question_set.extend(medium_q)
+            topic_difficulty_level = dl[
+                (dl['hard'] == np.int64(dl_list01[1])) & (dl['medium'] == np.int64(dl_list01[2])) & (
+                            dl['easy'] == np.int64(dl_list01[0]))]['difficulty_level'].item()
+            questions_topic = ruleset[topic_difficulty_level](topic, num_ques, prev_mocktestsDF, question_bankDF)
+            question_set.extend(questions_topic)
 
-        question_bankDF[question_bankDF['question_id'].isin(question_set)].groupby(['topic']).agg(
-            {'question_id': 'count'})
+        question_bankDF[question_bankDF['question_id'].isin(question_set)].groupby(['topic']).agg({'question_id': 'count'})
         print(question_set)
         question_list = []
         for question_id in question_set:
